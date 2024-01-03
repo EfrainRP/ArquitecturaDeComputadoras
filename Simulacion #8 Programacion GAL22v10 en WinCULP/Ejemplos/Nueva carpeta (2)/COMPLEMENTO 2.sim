@@ -1,0 +1,97 @@
+%SIGNAL
+PIN   2 =  A 
+PIN   3 =  B 
+PIN   4 =  C 
+PIN  14 =  C0 
+PIN  15 =  C1 
+PIN  16 =  C2 
+PIN  17 =  C3 
+PIN  18 =  C4 
+PIN  19 =  C5 
+PIN  20 =  C6 
+PIN  21 =  C7 
+PIN   5 =  D 
+%END
+
+%FIELD
+FIELD input = A,B,C,D
+FIELD output = C7,C6,C5,C4,C3,C2,C1,C0
+%END
+
+%EQUATION
+C0 =>
+    D
+
+C1 =>
+    C & !D
+  # !C & D
+
+C2 =>
+    B & !C & !D
+  # !B & D
+  # !B & C & !D
+
+C3 =>
+    A & !B & !C & !D
+  # !A & !B & D
+  # !A & C & !D
+  # !A & B & !C
+  # !A & B & C & D
+
+C4 =>
+    A & B & C & !D
+  # !A & !B & D
+  # !A & C & !D
+  # B & !C
+  # B & C & D
+  # A & !B
+
+C5 =>
+    A & B & C & !D
+  # !A & !B & D
+  # !A & C & !D
+  # B & !C
+  # B & C & D
+  # A & !B
+
+C6 =>
+    A & B & C & !D
+  # !A & !B & D
+  # !A & C & !D
+  # B & !C
+  # B & C & D
+  # A & !B
+
+C7 =>
+    A & B & C & !D
+  # !A & !B & D
+  # !A & C & !D
+  # B & !C
+  # B & C & D
+  # A & !B
+
+C0.oe  =>
+    1 
+
+C1.oe  =>
+    1 
+
+C2.oe  =>
+    1 
+
+C3.oe  =>
+    1 
+
+C4.oe  =>
+    1 
+
+C5.oe  =>
+    1 
+
+C6.oe  =>
+    1 
+
+C7.oe  =>
+    1 
+
+%END

@@ -1,0 +1,44 @@
+Name     Complemento 2 ;
+PartNo   00 ;
+Date     29/10/2021 ;
+Revision 01 ;
+Designer Engineer ;
+Company  University of Tulsa ;
+Assembly None ;
+Location  ;
+Device   g22v10 ;
+
+/* *************** INPUT PINS *********************/
+PIN    2 = A                        ; /*                                 */ 
+PIN    3 = B                        ; /*                                 */ 
+PIN    4 = C                        ; /*                                 */ 
+PIN    5 = D                        ; /*                                 */ 
+
+/* *************** OUTPUT PINS *********************/
+PIN    [21..14] = [C7..C0]                        ; /*Definicion de vector, 19 es el mas significativo  */ 
+
+/**********************Funtion*************************/
+
+field input = [A,B,C,D] ; /*A como mas significativo */
+field output = [C7..C0] ;
+
+table input=>output {
+'b'0000 => 'b'00000000;
+'b'0001 => 'b'11111111;
+'b'0010 => 'b'11111110;
+'b'0011 => 'b'11111101;
+'b'0100 => 'b'11111100;
+'b'0101 => 'b'11111011;
+'b'0110 => 'b'11111010;
+'b'0111 => 'b'11111001;
+'b'1000 => 'b'11111000;
+'b'1001 => 'b'11110111;	
+'b'1010 => 'b'11110110;
+'b'1011 => 'b'11110101;
+'b'1100 => 'b'11110100;
+'b'1101 => 'b'11110011;
+'b'1110 => 'b'11110010;
+'b'1111 => 'b'11110001;
+}
+
+

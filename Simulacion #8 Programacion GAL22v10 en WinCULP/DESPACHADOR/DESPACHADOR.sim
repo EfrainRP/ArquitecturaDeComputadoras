@@ -1,0 +1,71 @@
+%SIGNAL
+PIN   2 =  C0 
+PIN   3 =  C1 
+PIN   4 =  C2 
+PIN   5 =  C3 
+PIN   6 =  C4 
+PIN   1 =  CLK 
+PIN  19 =  Q0 
+PIN  20 =  Q1 
+PIN  21 =  Q2 
+PIN  22 =  Q3 
+PIN  23 =  Q4 
+%END
+
+%FIELD
+FIELD desp = Q4,Q3,Q2,Q1,Q0
+FIELD mon = C4,C3,C2,C1,C0
+%END
+
+%EQUATION
+Q0.d  =>
+    !C0 & !C1 & C2 & !C3 & C4 & !Q0 & !Q1 & !Q2 & !Q3 & Q4
+  # !C0 & C1 & !C2 & C3 & !C4 & Q0 & Q1 & Q2 & Q3 & Q4
+  # !C0 & !C1 & C2 & !C3 & C4 & Q0 & Q1 & Q2 & Q3 & Q4
+  # !C0 & C1 & !C2 & C3 & !C4 & !Q0 & Q1 & !Q2 & Q3 & Q4
+
+Q1.d  =>
+    !C0 & !C1 & C2 & !C3 & C4 & !Q0 & !Q1 & !Q2 & !Q3 & Q4
+  # !C0 & !C1 & C2 & !C3 & C4 & Q0 & Q1 & Q2 & Q3 & Q4
+
+Q2.d  =>
+    !C0 & !C1 & C2 & !C3 & C4 & !Q0 & !Q1 & !Q2 & !Q3 & Q4
+  # !C0 & C1 & !C2 & C3 & !C4 & Q0 & Q1 & Q2 & Q3 & Q4
+  # !C0 & !C1 & C2 & !C3 & C4 & Q0 & Q1 & Q2 & Q3 & Q4
+  # !C0 & C1 & !C2 & C3 & !C4 & !Q0 & Q1 & !Q2 & Q3 & Q4
+
+Q3.d  =>
+    !C0 & !C1 & C2 & !C3 & C4 & !Q0 & !Q1 & !Q2 & !Q3 & Q4
+  # !C0 & !C1 & C2 & !C3 & C4 & Q0 & Q1 & Q2 & Q3 & Q4
+
+Q4.d  =>
+    0 
+
+c =>
+    !C0 & !C1 & !C2 & !C3 & !C4
+
+ci =>
+    C0 & !C1 & C2 & !C3 & !C4
+
+di =>
+    !C0 & C1 & !C2 & C3 & !C4
+
+ve =>
+    !C0 & !C1 & C2 & !C3 & C4
+
+Q0.oe  =>
+    1 
+
+Q1.oe  =>
+    1 
+
+Q2.oe  =>
+    1 
+
+Q3.oe  =>
+    1 
+
+Q4.oe  =>
+    1 
+
+%END

@@ -1,0 +1,52 @@
+Name     DESPACHADOR ;
+PartNo   00 ;
+Date     4/11/2021 ;
+Revision 01 ;
+Designer Engineer ;
+Company  CUCEI ;
+Assembly None ;
+Location  ;
+Device   g22v10 ;
+
+/* *************** INPUT PINS *********************/
+PIN	1 = CLK;
+
+PIN    [2..6] = [C0..C4]                        ; /*                                 */ 
+
+
+/* *************** OUTPUT PINS *********************/
+PIN    [23..19] = [Q4..Q0]                        ; /*                                 */ 
+
+/* *************** INSTRUCTIONS *********************/
+field mon = [C4,C3,C2,C1,C0];
+c=mon:'b'00000;
+ci=mon:'b'00101;
+di=mon:'b'01010;
+ve=mon:'b'10100;
+
+field desp = [Q4,Q3,Q2,Q1,Q0];
+$define s0 'b'00000
+$define s5 'b'00101
+$define s15 'b'01111
+
+sequence desp{
+present s0
+	if c next s0;
+	if ci next s0;
+	if di next s5;
+	if ve next s15;
+
+present s5
+	if di next s5;
+	default next s0;
+
+present s15
+	if ve next s15;
+	default next s0;
+
+}
+
+
+
+
+

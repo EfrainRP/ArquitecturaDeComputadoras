@@ -1,0 +1,51 @@
+Name     Mealy ;
+PartNo   00 ;
+Date     29/10/2021 ;
+Revision 01 ;
+Designer Engineer ;
+Company  CUCEI ;
+Assembly None ;
+Location  ;
+Device   g22v10 ;
+
+/* *************** INPUT PINS *********************/
+PIN    1 = CLK                        ; /*                                 */ 
+PIN    2 = SEL                        ; /*                                 */ 
+
+/* *************** OUTPUT PINS *********************/
+PIN    [14..17] = [Q3..Q0]                        ; /*                                 */ 
+
+
+field estado = [SEL];
+asd = estado:1;
+des = estado:0;
+
+field cont = [Q3,Q2,Q1,Q0];
+$define s0 'b'0000 /*valor global*/
+$define s3 'b'0011
+$define s5 'b'0101
+$define s7 'b'0111
+$define s9 'b'1001
+$define s11 'b'1011
+
+sequence cont{
+present s0
+	if asd next s3;
+	if des next s11;
+present s3
+	if asd next s5;
+	if des next s0;
+present s5
+	if asd next s7;
+	if des next s3;
+present s7
+	if asd next s9;
+	if des next s5;
+present s9
+	if asd next s11;
+	if des next s7;
+present s11
+	if asd next s0;
+	if des next s9;
+	
+}

@@ -1,0 +1,128 @@
+field play = [j];
+alt = play:1;
+baj = play:0;
+
+field modA = [A1,A0];
+nulA=modA:00;
+piA=modA:01;
+paA=modA:10;/*30*/
+tiA=modA:11;
+
+field modB = [B1,B0];
+nulB=modB:00;
+pieB=modB:01;
+paB=modB:10;
+tiB=modB:11;
+
+field outp = [SA,SB]; 
+$define nulo 'b'00/*40*/ 
+$define gB 'b'01
+$define gA 'b'10
+$define emp 'b'11
+
+sequence outp{
+present nulo
+	if alt&nulA&nulB next nulo;
+	if alt& (modA==modB) next emp;
+	if alt& (modA<modB) next gB;
+	if alt& (modA>modB) next gA;
+	if baj next nulo;
+
+present gA
+	if alt&nulA&nulB next nulo;
+	if alt&(modA==modB) next emp;
+	if alt&(modA<modB) next gB;
+	if alt&(modA>modB) next gA;
+	if baj next nulo;
+
+present gB
+	if alt&nulA&nulB next nulo;
+	if alt&(modA==modB) next emp;
+	if alt&(modA<modB) next gB;
+	if alt&(modA>modB) next gA;
+	if baj next nulo;
+
+present emp
+	if alt&nulA&nulB next nulo;
+	if alt&(modA==modB) next emp;
+	if alt&(modA<modB) next gB;
+	if alt&(modA>modB) next gA;
+	if baj next nulo;
+}
+
+
+
+
+'b'0000
+'b'0001 
+'b'0010 
+'b'0011 
+'b'0100 
+'b'0101 
+'b'0110 
+'b'0111 
+'b'1000 
+'b'1001 
+'b'1010 
+'b'1011
+'b'1100 
+'b'1101 
+'b'1110 
+'b'1111 
+
+
+field ab = [A1,A0,B1,B0];
+field outp = [SA,SB];
+
+table ob => outp {
+'b'0000 => 'b'00;
+'b'0001 => 'b'00;
+'b'0010 => 'b'00;
+'b'0011 => 'b'00;
+'b'0100 => 'b'00;
+'b'0101 => 'b'11;
+'b'0110 => 'b'01;
+'b'0111 => 'b'10;
+'b'1000 => 'b'00;
+'b'1001 => 'b'10;
+'b'1010 => 'b'11;
+'b'1011 => 'b'01;
+'b'1100 => 'b'00;
+'b'1101 => 'b'01;
+'b'1110 => 'b'10;
+'b'1111 => 'b'11;
+}
+
+
+/* *************** INSTRUCTIONS *********************/
+field mon = [C4,C3,C2,C1,C0];
+c=mon:'b'00000;
+ci=mon:'b'00101;
+di=mon:'b'01010;
+ve=mon:'b'10100;
+
+
+
+field cont = [Q4,Q3,Q2,Q1,Q0];
+$define s0 'b'00000
+$define s5 'b'00101
+$define s15 'b'01111
+
+sequence cont{
+present s0
+	if c next s0;
+	if ci next s0;
+	if di next s5;
+	if ve next s15;
+
+present s5
+	if di next s5;
+
+present s15
+	if ve next s15;
+	
+}
+
+if c next s0;
+if ci next s0;
+if di next s0;

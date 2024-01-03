@@ -1,0 +1,59 @@
+%SIGNAL
+PIN   1 =  CLK 
+PIN  17 =  Q0 
+PIN  16 =  Q1 
+PIN  15 =  Q2 
+PIN  14 =  Q3 
+PIN   2 =  SEL 
+%END
+
+%FIELD
+FIELD cont = Q3,Q2,Q1,Q0
+FIELD estado = SEL
+%END
+
+%EQUATION
+Q0.d  =>
+    Q0 & Q1 & Q2 & Q3
+  # !Q0 & !Q1 & Q3 & SEL
+  # !Q0 & !Q1 & Q2 & !Q3 & !SEL
+  # !Q0 & Q1 & !Q2 & Q3
+  # !Q0 & !Q1 & !Q2 & Q3 & !SEL
+  # !Q0 & Q1 & Q2 & !Q3
+
+Q1.d  =>
+    Q0 & Q1 & Q2 & Q3
+  # !Q0 & Q1 & Q2 & !Q3
+  # !Q0 & Q1 & !Q2 & Q3
+
+Q2.d  =>
+    !Q0 & Q1 & Q2 & !Q3 & !SEL
+  # !Q0 & !Q1 & Q2 & Q3 & SEL
+  # !Q0 & Q1 & !Q2 & Q3 & SEL
+  # !Q0 & !Q1 & !Q2 & Q3 & !SEL
+
+Q3.d  =>
+    !Q0 & !Q1 & Q2 & !Q3 & !SEL
+  # Q0 & Q1 & Q2 & Q3 & !SEL
+  # !Q0 & !Q1 & !Q2 & Q3 & SEL
+  # !Q0 & Q1 & Q2 & !Q3 & SEL
+
+asd =>
+    SEL
+
+des =>
+    !SEL
+
+Q0.oe  =>
+    1 
+
+Q1.oe  =>
+    1 
+
+Q2.oe  =>
+    1 
+
+Q3.oe  =>
+    1 
+
+%END

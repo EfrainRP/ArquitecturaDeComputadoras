@@ -1,0 +1,37 @@
+Name     Decodificador BinHex ;
+PartNo   00 ;
+Date     29/10/2021 ;
+Revision 01 ;
+Designer Engineer ;
+Company  University of Tulsa ;
+Assembly None ;
+Location  ;
+Device   g22v10 ;
+
+/* *************** INPUT PINS *********************/
+PIN     2=A                       ; /*                                 */ 
+PIN     3=B                       ; /*                                 */ 
+PIN     4=C                       ; /*                                 */ 
+PIN     5=D                       ; /*                                 */ 
+
+/* *************** OUTPUT PINS *********************/
+PIN    22 = a                         ; /*                                 */ 
+PIN    21 = b                        ; /*                                 */ 
+PIN    20 = c                        ; /*                                 */ 
+PIN    19 = d                         ; /*                                 */ 
+PIN    18 = e                         ; /*                                 */ 
+PIN    17 = f                         ; /*                                 */ 
+PIN    16 = g                         ; /*                                 */ 
+
+/* *************** Equations *********************/
+
+a = !B&!D # !A&C # !A&B&D # B&C # A&!D # A&!B&!C;
+b = A&!C&D # !B&!D # !A&!C&!D # !A&C&D # !A&!B;
+c = !C&D # !A&B # A&!B # !A&!C # !A&D;
+d = B&!C&D # !B&C&D # B&C&!D # A&!C&!D # !A&!B&!D;
+e = !B&!D # C&!D # A&C # A&B;
+f = !C&!D # B&!D # !A&B&!C # A&!B # A&C;
+g = !B&C # A&!B # A&D # C&!D # !A&B&!C;
+
+
+
